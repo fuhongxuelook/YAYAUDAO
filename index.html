@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .wrapperOne{
+            width: 100%;
+            height: calc(100vh - 50px);
+            background-image: url('素材/素材/girl.png');
+            background-size: 100% 100%;
+        }
+        .wrapperOne .header{
+            padding: 20px 50px;
+        }
+        .wrapperOne .header .left{
+            display: flex;
+        }
+        .wrapperOne .header .left div:nth-child(1){
+            width: 100px;
+            height: 20px;
+            background: #43a062;
+            color: #fff;
+            text-align: center;
+            line-height: 20px;
+            font-size:12px;
+        }
+        .wrapperOne .header .left div:nth-child(2){
+            width: 100px;
+            height: 20px;
+            background: #fff;
+            color: #000;
+            text-align: center;
+            line-height: 20px;
+            font-size:12px;
+        }
+        .wrapperOne .header{
+            display: flex;
+            justify-content: space-between;
+        }
+        .wrapperOne .header .right{
+            display: flex;
+        }
+    
+        .wrapperOne .header .right div{
+            width: 100px;
+            height: 20px;
+            background: #43a062;
+            color: #fff;
+            text-align: center;
+            line-height: 20px;
+            font-size:12px;
+        }
+        .wrapperOne .header .right img{
+            width: 20px;
+            height: 20px;
+            margin: 0 10px;
+        }
+        .money{
+            width: 100%;
+            height: 50px;
+            background: #43a062;
+        }
+        .money button{
+ width: 140px;
+    height: 20px;
+    background-color: #fff;
+    outline: none;
+    float: right;
+    margin: 15px 10px;
+    border: #ffff;
+        }
+        .wrapperthree{
+            width: 100%;
+            height: 100vh;
+            background: #9dddaf;
+            display: flex;
+        }
+        .wrapperthree .left{
+            color: #000;
+            margin-left: 100px;
+            padding-top: 100px;
+        }
+        .wrapperthree .left div{
+            font-size:12px;
+        }
+        .wrapperthree .left div:nth-child(1){
+            font-size:16px;
+            font-weight: bold;
+        }
+        .wrapperthree .left div:nth-child(2){
+            font-size:24px;
+            font-weight: bold;
+        }
+        .wrapperthree .left .content{
+            margin-top: 50px;
+        }
+        .wrapperthree .left .content div{
+
+            font-size:12px;
+        }
+        .wrapperthree .middle .imgContent{
+            width: 300px;
+            height: 350px;
+            background: url('素材/素材/left.png');
+            background-size: 100% 100%;
+            box-sizing: border-box;
+            margin-left: 100px;
+            margin-top: 50px;
+        }
+        .wrapperthree .middle .imgContent .box{
+            padding-top: 50px;
+            padding-left: 40px;
+            padding-right: 20px;
+            font-size:14px;
+        }
+        .wrapperthree .right .imgContent{
+            width: 250px;
+            height: 300px;
+            background: url('素材/素材/right.png');
+            background-size: 100% 100%;
+            box-sizing: border-box;
+            margin-top: 150px;
+        }
+        .wrapperthree .right .imgContent .box{
+            padding-top: 80px;
+            padding-left: 40px;
+            padding-right: 20px;
+            font-size:14px;
+        }
+        .wrapperthree .right .imgContent .box .one .title{
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<script>
+        function connectToBSC() {
+            if (typeof window.ethereum == 'undefined') {
+                alert('MetaMask is not installed!');
+            } else {
+                if (window.ethereum.chainId == "0x38") {
+                    alert("You are already connected to the network with ID 0x38")
+                }
+
+                const chain = {
+                    chainId: "0x38",
+                    chainName: "Binance Smart Chain Mainnet",
+                    nativeCurrency: {
+                        name: "Binance Chain Native Token",
+                        symbol: "BNB",
+                        decimals: 18,
+                    },
+                    rpcUrls: ["https://bsc-dataseed1.binance.org", "https://bsc-dataseed2.binance.org", "https://bsc-dataseed3.binance.org", "https://bsc-dataseed4.binance.org", "https://bsc-dataseed1.defibit.io", "https://bsc-dataseed2.defibit.io", "https://bsc-dataseed3.defibit.io", "https://bsc-dataseed4.defibit.io", "https://bsc-dataseed1.ninicoin.io", "https://bsc-dataseed2.ninicoin.io", "https://bsc-dataseed3.ninicoin.io", "https://bsc-dataseed4.ninicoin.io", "wss://bsc-ws-node.nariox.org"],
+                    blockExplorerUrls: ["https://www.bscscan.com/"],
+                    iconUrls: [
+                        "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20201110/550eda20-1b9a-4bc7-9a65-e4a329e8bb57.png"
+                    ]
+                };
+                window.ethereum.request({
+                    method: "wallet_addEthereumChain",
+                    params: [chain],
+                }).catch((error) => {
+                    console.log(error);
+                    alert("An error has occurred. Please make sure the metamask is ready to go. See error in log");
+                });
+            }
+        }
+    </script>
+
+<body>
+    <div class="wrapperOne">
+        <!-- <img src="素材/素材/girl.png" alt=""> -->
+        <div class="header">
+            <div class="left">
+                <div>家</div>
+                <div>YAYAUDAO</div>
+            </div>
+            <div class="right">
+                <div>切换语言</div>
+                <img src="素材/素材/weibo.svg" alt="">
+                <img src="素材/素材/discord.svg" alt="">
+            </div>
+        </div>
+        
+    </div>
+    <div class="money">
+        <button id="btn" onclick="connectToBSC()">链接钱包</button>
+    </div>
+    <div class="wrapperthree">
+        <div class="left">
+            <div>我们的社区</div>
+            <div>全球合作者沟通联盟</div>
+            <div class="content">
+                <div>YayauDAO是一项旨 在颠覆粉丝和明星互动的沟通方式</div>
+                <div>YayauDAO为所有合作者建立沟通</div>
+                <div>我们从一个贴纸包开始，但是我们后续会有更多行动</div>
+                <div>立即加入我们的全球联盟吧</div>
+                <div>我们的核心价值观是：</div><span>关爱、表达和无限</span>
+            </div>
+            
+            
+        </div>
+        <div class="middle">
+            <div class="imgContent">
+                <div class="box">
+                    <div class="one">
+                        <div class="title">1、建立和连接</div>
+                        <div class="content">
+                            我们相信合作者必须建立连接，而且要
+                            快速高效的建立连接。在VayauDAO随
+                            时随地的建立连接，想到即连接。
+                        </div>
+                    </div>
+                    <div class="two">
+                        <div class="title">2、目的和意义</div>
+                        <div class="content">
+                            创建YayauDAO的目的：帮助像Yavau
+                            这样的创作者能够更专心、更专注于工
+                            作，并随时建立跟粉丝和其他合作伙伴
+                            的互动。
+                        </div>
+                    </div>
+                    <div class="three">
+                        <div class="title">3、粉丝权益</div>
+                        <div class="content">
+                            Yayau会在全世界任何一个角落，通过
+                            YavauDAO随时与你建立连接，准备好
+                            与她一起创作吧。
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+        <div class="right">
+            <div class="imgContent">
+                <div class="box">
+                    <div class="one">
+                        <div class="title">NFT空投：</div>
+                        <div class="content">
+                            Yayau会不定期的空投明信片给nft
+                            持有者，每一张都是独一无二的。
+                            可能是剧组拍摄所想，可能是当天
+                            心情，也可能是路边的风景。
+                            一切的一切，只是因为想你们了。
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <script>
+
+    </script>
+</body>
+</html>
