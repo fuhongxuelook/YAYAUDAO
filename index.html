@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
     <title>Document</title>
     <style>
         *{
@@ -140,40 +142,6 @@
         }
     </style>
 </head>
-<script>
-        function connectToBSC() {
-            if (typeof window.ethereum == 'undefined') {
-                alert('MetaMask is not installed!');
-            } else {
-                if (window.ethereum.chainId == "0x38") {
-                    alert("You are already connected to the network with ID 0x38")
-                }
-
-                const chain = {
-                    chainId: "0x38",
-                    chainName: "Binance Smart Chain Mainnet",
-                    nativeCurrency: {
-                        name: "Binance Chain Native Token",
-                        symbol: "BNB",
-                        decimals: 18,
-                    },
-                    rpcUrls: ["https://bsc-dataseed1.binance.org", "https://bsc-dataseed2.binance.org", "https://bsc-dataseed3.binance.org", "https://bsc-dataseed4.binance.org", "https://bsc-dataseed1.defibit.io", "https://bsc-dataseed2.defibit.io", "https://bsc-dataseed3.defibit.io", "https://bsc-dataseed4.defibit.io", "https://bsc-dataseed1.ninicoin.io", "https://bsc-dataseed2.ninicoin.io", "https://bsc-dataseed3.ninicoin.io", "https://bsc-dataseed4.ninicoin.io", "wss://bsc-ws-node.nariox.org"],
-                    blockExplorerUrls: ["https://www.bscscan.com/"],
-                    iconUrls: [
-                        "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20201110/550eda20-1b9a-4bc7-9a65-e4a329e8bb57.png"
-                    ]
-                };
-                window.ethereum.request({
-                    method: "wallet_addEthereumChain",
-                    params: [chain],
-                }).catch((error) => {
-                    console.log(error);
-                    alert("An error has occurred. Please make sure the metamask is ready to go. See error in log");
-                });
-            }
-        }
-    </script>
-
 <body>
     <div class="wrapperOne">
         <!-- <img src="meta/meta/girl.png" alt=""> -->
@@ -191,7 +159,17 @@
         
     </div>
     <div class="money">
-        <button id="btn" onclick="connectToBSC()">链接钱包</button>
+        <button id="eth_requestAccounts">链接钱包</button>
+        <span id="say"> </span>
+    </div>
+    <div>
+        <button id="mint_1">Mint 1</button>
+    </div>
+    <div>
+        <button id="mint_5">Mint 1</button>
+    </div>
+    <div>
+        <button id="mint_10">Mint 10</button>
     </div>
     <div class="wrapperthree">
         <div class="left">
@@ -260,8 +238,94 @@
             </div>
         </div>
     </div>
-    <script>
+    
+<script>
 
-    </script>
+    function showResult(node, msg) {
+        node.text(msg);
+    }
+
+    jQuery("#eth_requestAccounts").click(async function () {
+
+        if (typeof window.ethereum == 'undefined') {
+            alert('MetaMask is not installed!');
+        } else {
+            if (window.ethereum.chainId != "0x4") {
+                showResult(jQuery("#eth_requestAccounts"), "链接钱包");
+                showResult(jQuery("#say") ,"Wrong network, please switch to Ethereum network")
+                return;
+            }
+        }
+
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+        // The MetaMask plugin also allows signing transactions to
+        // send ether and pay to change state within the blockchain.
+        // For this, you need the account signer...
+        const signer = provider.getSigner();
+        myAddress = await signer.getAddress();
+        showResult(jQuery("#eth_requestAccounts"), myAddress);
+        showResult(jQuery("#say"), "");
+
+    });
+
+    jQuery("#mint_1").click(async function () {
+        let num = 1;
+        mint(num);
+
+    });
+
+    jQuery("#mint_5").click(async function () {
+        let num = 5;
+        mint(num);
+
+    });
+
+    jQuery("#mint_10").click(async function () {
+        let num = 10;
+        mint(num);
+
+    });
+
+
+    async function mint(num) {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+       
+        // The MetaMask plugin also allows signing transactions to
+        // send ether and pay to change state within the blockchain.
+        // For this, you need the account signer...
+        const signer = provider.getSigner();
+        let NFT = '0x26383f943234f641b6d2c00c020571bf01cac7da';
+
+        let price = 0.03;
+
+        let funcCode = ethers.utils.hexDataSlice(ethers.utils.id("mint(uint256)"), 0, 4);
+
+        let data = ethers.utils.hexConcat([
+            funcCode,
+            ethers.utils.hexZeroPad(ethers.utils.hexValue(num), 32),
+        ]);
+        // ethers.utils.hexZeroPad(WETH, 32),
+        // console.log(0x1);
+        //let data =  ethers.utils.hexDataSlice(ethers.utils.id("name()"), 0, 4);
+        console.log(ethers.utils.hexZeroPad(ethers.utils.hexValue(num), 32));
+        //console.log(params1);
+        let t = {//签名，发送交易
+            to: NFT,//发送至以太坊域名
+            data: data,
+            value: ethers.utils.parseEther((num*price).toString())
+        }
+
+
+        const tx0 = await signer.sendTransaction(t);
+
+        await tx0.wait();
+
+        console.log(tx0);
+
+    }
+
+
+</script>
 </body>
 </html>
