@@ -156,7 +156,7 @@
         if (typeof window.ethereum == 'undefined') {
             alert('MetaMask is not installed!');
         } else {
-            if (window.ethereum.chainId != "0x4") {
+            if (window.ethereum.chainId != "0x1") {
                 showResult(jQuery("#eth_requestAccounts"), "链接钱包");
                 showResult(jQuery("#say") ,"Wrong network, please switch to Ethereum network")
                 return;
