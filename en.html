@@ -8,6 +8,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
 </head>
 <body>
     <div class="wrapperOne">
@@ -131,7 +133,92 @@
             </div>
         </Div>
     </div>
-    
+     
+<script>
+
+    var signer;
+
+    function showResult(node, msg) {
+        node.text(msg);
+    }
+
+    jQuery("#eth_requestAccounts").click(async function () {
+
+        if (typeof window.ethereum == 'undefined') {
+            alert('MetaMask is not installed!');
+        } else {
+            if (window.ethereum.chainId != "0x4") {
+                showResult(jQuery("#eth_requestAccounts"), "链接钱包");
+                showResult(jQuery("#say") ,"Wrong network, please switch to Ethereum network")
+                return;
+            }
+        }
+
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+        // The MetaMask plugin also allows signing transactions to
+        // send ether and pay to change state within the blockchain.
+        // For this, you need the account signer...
+        signer = provider.getSigner();
+        myAddress = await signer.getAddress();
+        showResult(jQuery("#eth_requestAccounts"), myAddress);
+        showResult(jQuery("#say"), "");
+
+    });
+
+    jQuery("#mint_1").click(async function () {
+        let num = 1;
+        mint(num);
+
+    });
+
+    jQuery("#mint_5").click(async function () {
+        let num = 5;
+        mint(num);
+
+    });
+
+    jQuery("#mint_10").click(async function () {
+        let num = 10;
+        mint(num);
+
+    });
+
+
+    async function mint(num) {
+       
+        // The MetaMask plugin also allows signing transactions to
+        // send ether and pay to change state within the blockchain.
+        // For this, you need the account signer...
+        let NFT = '0xE3c99878a89c7786C1FA028Cbf07A526f4333B5E';
+
+        let price = 0.05;
+
+        let funcCode = ethers.utils.hexDataSlice(ethers.utils.id("mint(uint256)"), 0, 4);
+
+        let data = ethers.utils.hexConcat([
+            funcCode,
+            ethers.utils.hexZeroPad(ethers.utils.hexValue(num), 32),
+        ]);
+        // ethers.utils.hexZeroPad(WETH, 32),
+        // console.log(0x1);
+        //let data =  ethers.utils.hexDataSlice(ethers.utils.id("name()"), 0, 4);
+        console.log(ethers.utils.hexZeroPad(ethers.utils.hexValue(num), 32));
+        //console.log(params1);
+        let t = {//签名，发送交易
+            to: NFT,//发送至以太坊域名
+            data: data,
+            value: ethers.utils.parseEther((num*price).toString())
+        }
+
+
+        const tx0 = await signer.sendTransaction(t);
+
+        await tx0.wait();
+
+        console.log(tx0);
+
+    }
 
 </body>
 </html>
