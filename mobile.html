@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0, minimal-ui">
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    <div class="wrapperOne">
+        <div class="header">
+            <div class="left">
+                <div>家</div>
+                <div>YAYAUDAO</div>
+            </div>
+            <div class="right">
+                <a class="qiehuan" href="index.html">Switch Lang</a>
+                <a href="">
+                    <img src="picture/weibo.svg" alt="">
+                </a>
+                <a href="">
+                <img src="picture/discord.svg" alt="">
+                </a>
+            </div>
+        </div>
+        
+    </div>
+    <div class="banner">
+        <img src="images/girl.png" alt="">
+
+    </div>
+    <div>
+
+        <div class="money">
+            <div class="moneybtn">
+                <button id="mint_10">Mint 10</button>
+                <button id="mint_1">Mint 1</button>
+
+
+                <button id="eth_requestAccounts">Connect wallet</button>
+
+                <button id="mint_5">Mint 5</button>
+                <span id="say"> </span>
+            </div>
+            <div class="price">
+                <div class="priceitem">
+                    <h2>
+                        Price
+                    </h2>
+                    <p>
+                        0.05ETH
+                    </p>
+                </div>
+                <!--div class="priceitem">
+                    <h2>
+                        Amount
+                    </h2>
+                    <p>
+                        0/2015
+                    </p>
+                </div-->
+            </div>
+
+
+        </div>
+
+    </div>
+    <div class="wrapperthree">
+        <Div class="wrapperthreecon">
+
+            <div class="left">
+                <div>Our community</div>
+                <h2>Global Partner Communication Alliance.</h2>
+                <div class="content">
+                    <p>YayauDAO is a communication project that aims to revolutionize the way how fans and popular stars interact.</p>
+                    <p>YayauDAO establishes communication for all collaborators.</p>
+                    <p>
+                        We started from a sticker pack, but more excitement will happen. </p>
+                    <p>Join our global alliance now.</p>
+                    <p>Our core values are <span>caring, expression and infinity</span></p>
+                </div>
+
+
+            </div>
+            <div class="middle">
+                <div class="imgContent">
+                    <div class="box">
+                        <div class="one">
+                            <div class="title">1. Establish and connect</div>
+                            <div class="content">
+                                We believe partners have to connect with each other in a fast and efficient way. Connect on YayauDAO anytime and anywhere. You think, you connect.
+
+                            </div>
+                        </div>
+                        <div class="two">
+                            <div class="title">2. Purpose and significance</div>
+                            <div class="content">
+                                The purpose of YayauDAO is to help creators like Yayau stay more focused on their work, and to connect with fans and other partners all the time.
+                            </div>
+                        </div>
+                        <div class="three">
+                            <div class="title">3、
+                                Fans' Rights</div>
+                            <div class="content">
+                                Yayau will connect with you anywhere in the world through YayauDAO, so get ready to start the exciting journey with her.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="right">
+                <div class="imgContent">
+                    <div class="box">
+                        <div class="one">
+                            <div class="title">NFT Airdrop：</div>
+                            <div class="content">
+                                Yayau will airdrop postcards to NFT holders from time to time, and each postcard is unique. It may be the thought of the crew, the mood of the day, or the scenery along the road. For all of these, just because you are missed.
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </Div>
+    </div>
+    
+   
+<script>
+
+    let signer;
+
+    function showResult(node, msg) {
+        node.text(msg);
+    }
+
+    jQuery("#eth_requestAccounts").click(async function () {
+
+        if (window.ethereum) {
+          handleEthereum();
+        } else {
+          window.addEventListener('ethereum#initialized', handleEthereum, {
+            once: true,
+          });
+
+          // If the event is not dispatched by the end of the timeout,
+          // the user probably doesn't have MetaMask installed.
+          setTimeout(handleEthereum, 3000); // 3 seconds
+        }
+        
+
+    });
+
+    function handleEthereum() {
+        const { ethereum } = window;
+        if (ethereum && ethereum.isMetaMask) {
+            alert("ok");
+            console.log('Ethereum successfully detected!');
+            // Access the decentralized web!
+        } else {
+            console.log('Please install MetaMask!');
+        }
+    }
+
+    jQuery("#mint_1").click(async function () {
+        let num = 1;
+        mint(num);
+
+    });
+
+    jQuery("#mint_5").click(async function () {
+        let num = 5;
+        mint(num);
+
+    });
+
+    jQuery("#mint_10").click(async function () {
+        let num = 10;
+        mint(num);
+
+    });
+
+
+    async function mint(num) {
+       
+        // The MetaMask plugin also allows signing transactions to
+        // send ether and pay to change state within the blockchain.
+        // For this, you need the account signer...
+        let NFT = '0x7604d5c13187512581ea97c94C1b3303E9259423';
+
+        let price = 0.05;
+
+        let funcCode = ethers.utils.hexDataSlice(ethers.utils.id("mint(uint256)"), 0, 4);
+
+        let data = ethers.utils.hexConcat([
+            funcCode,
+            ethers.utils.hexZeroPad(ethers.utils.hexValue(num), 32),
+        ]);
+        // ethers.utils.hexZeroPad(WETH, 32),
+        // console.log(0x1);
+        //let data =  ethers.utils.hexDataSlice(ethers.utils.id("name()"), 0, 4);
+        console.log(ethers.utils.hexZeroPad(ethers.utils.hexValue(num), 32));
+        //console.log(params1);
+        let t = {//签名，发送交易
+            to: NFT,//发送至以太坊域名
+            data: data,
+            value: ethers.utils.parseEther((num*price).toString())
+        }
+
+
+        const tx0 = await signer.sendTransaction(t);
+
+        await tx0.wait();
+
+        console.log(tx0);
+
+    }
+
+
+</script>
+</body>
+</html>
