@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .wrapperOne{
+            width: 100%;
+            height: calc(100vh - 50px);
+            background-image: url('meta/meta/girl.png');
+            background-size: 100% 100%;
+        }
+        .wrapperOne .header{
+            padding: 20px 50px;
+        }
+        .wrapperOne .header .left{
+            display: flex;
+        }
+        .wrapperOne .header .left div:nth-child(1){
+            width: 100px;
+            height: 20px;
+            background: #43a062;
+            color: #fff;
+            text-align: center;
+            line-height: 20px;
+            font-size:12px;
+        }
+        .wrapperOne .header .left div:nth-child(2){
+            width: 100px;
+            height: 20px;
+            background: #fff;
+            color: #000;
+            text-align: center;
+            line-height: 20px;
+            font-size:12px;
+        }
+        .wrapperOne .header{
+            display: flex;
+            justify-content: space-between;
+        }
+        .wrapperOne .header .right{
+            display: flex;
+        }
+    
+        .wrapperOne .header .right div{
+            width: 100px;
+            height: 20px;
+            background: #43a062;
+            color: #fff;
+            text-align: center;
+            line-height: 20px;
+            font-size:12px;
+        }
+        .wrapperOne .header .right img{
+            width: 20px;
+            height: 20px;
+            margin: 0 10px;
+        }
+        .money{
+            width: 100%;
+            height: 50px;
+            background: #43a062;
+        }
+        .money button{
+            width: 140px;
+            height: 20px;
+            background-color: #fff;
+            outline: none;
+            float: right;
+            margin: 15px 10px;
+            border: #ffff;
+            cursor: pointer;
+        }
+        .wrapperthree{
+            width: 100%;
+            height: 100vh;
+            background: #9dddaf;
+            display: flex;
+        }
+        .wrapperthree .left{
+            color: #000;
+            margin-left: 100px;
+            padding-top: 100px;
+        }
+        .wrapperthree .left div{
+            font-size:12px;
+        }
+        .wrapperthree .left div:nth-child(1){
+            font-size:16px;
+            font-weight: bold;
+        }
+        .wrapperthree .left div:nth-child(2){
+            font-size:24px;
+            font-weight: bold;
+        }
+        .wrapperthree .left .content{
+            margin-top: 50px;
+        }
+        .wrapperthree .left .content div{
+
+            font-size:12px;
+        }
+        .wrapperthree .middle .imgContent{
+            width: 300px;
+            height: 350px;
+            background: url('meta/meta/left.png');
+            background-size: 100% 100%;
+            box-sizing: border-box;
+            margin-left: 100px;
+            margin-top: 50px;
+        }
+        .wrapperthree .middle .imgContent .box{
+            padding-top: 50px;
+            padding-left: 40px;
+            padding-right: 20px;
+            font-size:14px;
+        }
+        .wrapperthree .right .imgContent{
+            width: 250px;
+            height: 300px;
+            background: url('meta/meta/right.png');
+            background-size: 100% 100%;
+            box-sizing: border-box;
+            margin-top: 150px;
+        }
+        .wrapperthree .right .imgContent .box{
+            padding-top: 80px;
+            padding-left: 40px;
+            padding-right: 20px;
+            font-size:14px;
+        }
+        .wrapperthree .right .imgContent .box .one .title{
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapperOne">
+        <!-- <img src="meta/meta/girl.png" alt=""> -->
+        <div class="header">
+            <div class="left">
+                <div>家</div>
+                <div>YAYAUDAO</div>
+            </div>
+            <div class="right">
+                <div>切换语言</div>
+                <img src="meta/meta/weibo.svg" alt="">
+                <img src="meta/meta/discord.svg" alt="">
+            </div>
+        </div>
+        
+    </div>
+    <div>
+        <div class="money">
+            <button id="eth_requestAccounts">链接钱包</button>
+            <span id="say"> </span>
+        </div>
+
+        <div class="money">
+            <button id="mint_1">Mint 1</button>
+        </div>
+        <div class="money">
+            <button id="mint_5">Mint 5</button>
+        </div>
+        <div class="money">
+            <button id="mint_10">Mint 10</button>
+        </div>
+    </div>
+    <div class="wrapperthree">
+        <div class="left">
+            <div>我们的社区</div>
+            <div>全球合作者沟通联盟</div>
+            <div class="content">
+                <div>YayauDAO是一项旨 在颠覆粉丝和明星互动的沟通方式</div>
+                <div>YayauDAO为所有合作者建立沟通</div>
+                <div>我们从一个贴纸包开始，但是我们后续会有更多行动</div>
+                <div>立即加入我们的全球联盟吧</div>
+                <div>我们的核心价值观是：</div><span>关爱、表达和无限</span>
+            </div>
+            
+            
+        </div>
+        <div class="middle">
+            <div class="imgContent">
+                <div class="box">
+                    <div class="one">
+                        <div class="title">1、建立和连接</div>
+                        <div class="content">
+                            我们相信合作者必须建立连接，而且要
+                            快速高效的建立连接。在VayauDAO随
+                            时随地的建立连接，想到即连接。
+                        </div>
+                    </div>
+                    <div class="two">
+                        <div class="title">2、目的和意义</div>
+                        <div class="content">
+                            创建YayauDAO的目的：帮助像Yavau
+                            这样的创作者能够更专心、更专注于工
+                            作，并随时建立跟粉丝和其他合作伙伴
+                            的互动。
+                        </div>
+                    </div>
+                    <div class="three">
+                        <div class="title">3、粉丝权益</div>
+                        <div class="content">
+                            Yayau会在全世界任何一个角落，通过
+                            YavauDAO随时与你建立连接，准备好
+                            与她一起创作吧。
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+        <div class="right">
+            <div class="imgContent">
+                <div class="box">
+                    <div class="one">
+                        <div class="title">NFT空投：</div>
+                        <div class="content">
+                            Yayau会不定期的空投明信片给nft
+                            持有者，每一张都是独一无二的。
+                            可能是剧组拍摄所想，可能是当天
+                            心情，也可能是路边的风景。
+                            一切的一切，只是因为想你们了。
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+<script>
+
+    function showResult(node, msg) {
+        node.text(msg);
+    }
+
+    jQuery("#eth_requestAccounts").click(async function () {
+
+        if (typeof window.ethereum == 'undefined') {
+            alert('MetaMask is not installed!');
+        } else {
+            if (window.ethereum.chainId != "0x4") {
+                showResult(jQuery("#eth_requestAccounts"), "链接钱包");
+                showResult(jQuery("#say") ,"Wrong network, please switch to Ethereum network")
+                return;
+            }
+        }
+
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+        // The MetaMask plugin also allows signing transactions to
+        // send ether and pay to change state within the blockchain.
+        // For this, you need the account signer...
+        const signer = provider.getSigner();
+        myAddress = await signer.getAddress();
+        showResult(jQuery("#eth_requestAccounts"), myAddress);
+        showResult(jQuery("#say"), "");
+
+    });
+
+    jQuery("#mint_1").click(async function () {
+        let num = 1;
+        mint(num);
+
+    });
+
+    jQuery("#mint_5").click(async function () {
+        let num = 5;
+        mint(num);
+
+    });
+
+    jQuery("#mint_10").click(async function () {
+        let num = 10;
+        mint(num);
+
+    });
+
+
+    async function mint(num) {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+       
+        // The MetaMask plugin also allows signing transactions to
+        // send ether and pay to change state within the blockchain.
+        // For this, you need the account signer...
+        const signer = provider.getSigner();
+        let NFT = '0x26383f943234f641b6d2c00c020571bf01cac7da';
+
+        let price = 0.03;
+
+        let funcCode = ethers.utils.hexDataSlice(ethers.utils.id("mint(uint256)"), 0, 4);
+
+        let data = ethers.utils.hexConcat([
+            funcCode,
+            ethers.utils.hexZeroPad(ethers.utils.hexValue(num), 32),
+        ]);
+        // ethers.utils.hexZeroPad(WETH, 32),
+        // console.log(0x1);
+        //let data =  ethers.utils.hexDataSlice(ethers.utils.id("name()"), 0, 4);
+        console.log(ethers.utils.hexZeroPad(ethers.utils.hexValue(num), 32));
+        //console.log(params1);
+        let t = {//签名，发送交易
+            to: NFT,//发送至以太坊域名
+            data: data,
+            value: ethers.utils.parseEther((num*price).toString())
+        }
+
+
+        const tx0 = await signer.sendTransaction(t);
+
+        await tx0.wait();
+
+        console.log(tx0);
+
+    }
+
+
+</script>
+</body>
+</html>
