@@ -152,7 +152,7 @@
     }
 
     jQuery("#eth_requestAccounts").click(async function () {
-
+        await window.ethereum.enable()
         if (typeof window.ethereum == 'undefined') {
             alert('MetaMask is not installed!');
         } else {
