@@ -37,14 +37,14 @@
     <div>
         <div class="money">
             <div class="moneybtn">
-                <button id="mint_10">Mint 10</button>
-                <button id="mint_1">Mint 1</button>
+                <button id="mint_10_en">Mint 10</button>
+                <button id="mint_1_en">Mint 1</button>
 
 
-                <button id="eth_requestAccounts">链接钱包</button>
+                <button id="eth_requestAccounts_en">链接钱包</button>
 
-                <button id="mint_5">Mint 5</button>
-                <span id="say"> </span>
+                <button id="mint_5_en">Mint 5</button>
+                <span id="say_en"> </span>
             </div>
             <div class="price">
                 <div class="priceitem">
@@ -136,20 +136,18 @@
      
 <script>
 
-    var signer;
-
-    function showResult(node, msg) {
+    function showResult1(node, msg) {
         node.text(msg);
     }
 
-    jQuery("#eth_requestAccounts").click(async function () {
+    jQuery("#eth_requestAccounts_en").click(async function () {
 
         if (typeof window.ethereum == 'undefined') {
             alert('MetaMask is not installed!');
         } else {
             if (window.ethereum.chainId != "0x4") {
-                showResult(jQuery("#eth_requestAccounts"), "链接钱包");
-                showResult(jQuery("#say") ,"Wrong network, please switch to Ethereum network")
+                showResult(jQuery("#eth_requestAccounts_en"), "链接钱包");
+                showResult(jQuery("#say_en") ,"Wrong network, please switch to Ethereum network")
                 return;
             }
         }
@@ -159,26 +157,28 @@
         // The MetaMask plugin also allows signing transactions to
         // send ether and pay to change state within the blockchain.
         // For this, you need the account signer...
-        signer = provider.getSigner();
+        let signer = provider.getSigner();
         myAddress = await signer.getAddress();
-        showResult(jQuery("#eth_requestAccounts"), myAddress);
-        showResult(jQuery("#say"), "");
+        showResult(jQuery("#eth_requestAccounts_en"), myAddress);
+        showResult(jQuery("#say_en"), "");
 
     });
 
-    jQuery("#mint_1").click(async function () {
+   
+
+    jQuery("#mint_1_en").click(async function () {
         let num = 1;
         mint(num);
 
     });
 
-    jQuery("#mint_5").click(async function () {
+    jQuery("#mint_5_en").click(async function () {
         let num = 5;
         mint(num);
 
     });
 
-    jQuery("#mint_10").click(async function () {
+    jQuery("#mint_10_en").click(async function () {
         let num = 10;
         mint(num);
 
