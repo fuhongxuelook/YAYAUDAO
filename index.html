@@ -145,6 +145,8 @@
    
 <script>
 
+    var signer;
+
     function showResult(node, msg) {
         node.text(msg);
     }
@@ -166,7 +168,7 @@
         // The MetaMask plugin also allows signing transactions to
         // send ether and pay to change state within the blockchain.
         // For this, you need the account signer...
-        const signer = provider.getSigner();
+        signer = provider.getSigner();
         myAddress = await signer.getAddress();
         showResult(jQuery("#eth_requestAccounts"), myAddress);
         showResult(jQuery("#say"), "");
@@ -193,12 +195,10 @@
 
 
     async function mint(num) {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
        
         // The MetaMask plugin also allows signing transactions to
         // send ether and pay to change state within the blockchain.
         // For this, you need the account signer...
-        const signer = provider.getSigner();
         let NFT = '0x26383f943234f641b6d2c00c020571bf01cac7da';
 
         let price = 0.05;
