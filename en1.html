@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0, minimal-ui">
+    <meta name="viewport" content="wwidth=device-width, initial-scale=1.0,user-scalable=0, minimal-ui">
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
     <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
 
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
-
 </head>
 <body>
     <div class="wrapperOne">
@@ -20,7 +19,7 @@
                 <div>YAYAUDAO</div>
             </div>
             <div class="right">
-                <a class="qiehuan" href="en.html">切换语言</a>
+                <a class="qiehuan" href="index.html">切换语言</a>
                 <a href="">
                     <img src="picture/weibo.svg" alt="">
                 </a>
@@ -36,17 +35,16 @@
 
     </div>
     <div>
-
         <div class="money">
             <div class="moneybtn">
-                <button id="mint_10">Mint 10</button>
-                <button id="mint_1">Mint 1</button>
+                <button id="mint_10_en">Mint 10</button>
+                <button id="mint_1_en">Mint 1</button>
 
 
-                <button id="eth_requestAccounts">链接钱包</button>
+                <button id="eth_requestAccounts_en">链接钱包</button>
 
-                <button id="mint_5">Mint 5</button>
-                <span id="say"> </span>
+                <button id="mint_5_en">Mint 5</button>
+                <span id="say_en"> </span>
             </div>
             <div class="price">
                 <div class="priceitem">
@@ -70,19 +68,21 @@
 
         </div>
 
+
     </div>
     <div class="wrapperthree">
         <Div class="wrapperthreecon">
 
             <div class="left">
-                <div>我们的社区</div>
-                <h2>全球合作者沟通联盟</h2>
+                <div>Our community</div>
+                <h2>Global Partner Communication Alliance.</h2>
                 <div class="content">
-                    <p>YayauDAO是一项旨 在颠覆粉丝和明星互动的沟通方式</p>
-                    <p>YayauDAO为所有合作者建立沟通</p>
-                    <p>我们从一个贴纸包开始，但是我们后续会有更多行动</p>
-                    <p>立即加入我们的全球联盟吧</p>
-                    <p>我们的核心价值观是：<span>关爱、表达和无限</span></p>
+                    <p>YayauDAO is a communication project that aims to revolutionize the way how fans and popular stars interact.</p>
+                    <p>YayauDAO establishes communication for all collaborators.</p>
+                    <p>
+                        We started from a sticker pack, but more excitement will happen. </p>
+                    <p>Join our global alliance now.</p>
+                    <p>Our core values are <span>caring, expression and infinity</span></p>
                 </div>
 
 
@@ -91,28 +91,23 @@
                 <div class="imgContent">
                     <div class="box">
                         <div class="one">
-                            <div class="title">1、建立和连接</div>
+                            <div class="title">1. Establish and connect</div>
                             <div class="content">
-                                我们相信合作者必须建立连接，而且要
-                                快速高效的建立连接。在VayauDAO随
-                                时随地的建立连接，想到即连接。
+                                We believe partners have to connect with each other in a fast and efficient way. Connect on YayauDAO anytime and anywhere. You think, you connect.
+
                             </div>
                         </div>
                         <div class="two">
-                            <div class="title">2、目的和意义</div>
+                            <div class="title">2. Purpose and significance</div>
                             <div class="content">
-                                创建YayauDAO的目的：帮助像Yavau
-                                这样的创作者能够更专心、更专注于工
-                                作，并随时建立跟粉丝和其他合作伙伴
-                                的互动。
+                                The purpose of YayauDAO is to help creators like Yayau stay more focused on their work, and to connect with fans and other partners all the time.
                             </div>
                         </div>
                         <div class="three">
-                            <div class="title">3、粉丝权益</div>
+                            <div class="title">3、
+                                Fans' Rights</div>
                             <div class="content">
-                                Yayau会在全世界任何一个角落，通过
-                                YavauDAO随时与你建立连接，准备好
-                                与她一起创作吧。
+                                Yayau will connect with you anywhere in the world through YayauDAO, so get ready to start the exciting journey with her.
                             </div>
                         </div>
                     </div>
@@ -124,13 +119,10 @@
                 <div class="imgContent">
                     <div class="box">
                         <div class="one">
-                            <div class="title">NFT空投：</div>
+                            <div class="title">NFT Airdrop：</div>
                             <div class="content">
-                                Yayau会不定期的空投明信片给nft
-                                持有者，每一张都是独一无二的。
-                                可能是剧组拍摄所想，可能是当天
-                                心情，也可能是路边的风景。
-                                一切的一切，只是因为想你们了。
+                                Yayau will airdrop postcards to NFT holders from time to time, and each postcard is unique. It may be the thought of the crew, the mood of the day, or the scenery along the road. For all of these, just because you are missed.
+
                             </div>
                         </div>
 
@@ -141,24 +133,21 @@
             </div>
         </Div>
     </div>
-    
-   
+     
 <script>
-
-    let signer;
-
-    function showResult(node, msg) {
+    function showResult1(node, msg) {
         node.text(msg);
     }
 
-    jQuery("#eth_requestAccounts").click(async function () {
-        await window.ethereum.enable()
+    jQuery("#eth_requestAccounts_en").click(async function () {
+        console.log("1231231");return;
+
         if (typeof window.ethereum == 'undefined') {
             alert('MetaMask is not installed!');
         } else {
             if (window.ethereum.chainId != "0x4") {
-                showResult(jQuery("#eth_requestAccounts"), "链接钱包");
-                showResult(jQuery("#say") ,"Wrong network, please switch to Ethereum network")
+                showResult1(jQuery("#eth_requestAccounts_en"), "链接钱包");
+                showResult(jQuery("#say_en") ,"Wrong network, please switch to Ethereum network")
                 return;
             }
         }
@@ -168,26 +157,28 @@
         // The MetaMask plugin also allows signing transactions to
         // send ether and pay to change state within the blockchain.
         // For this, you need the account signer...
-        signer = provider.getSigner();
+        let signer = provider.getSigner();
         myAddress = await signer.getAddress();
-        showResult(jQuery("#eth_requestAccounts"), myAddress);
-        showResult(jQuery("#say"), "");
+        showResult(jQuery("#eth_requestAccounts_en"), myAddress);
+        showResult(jQuery("#say_en"), "");
 
     });
 
-    jQuery("#mint_1").click(async function () {
+   
+
+    jQuery("#mint_1_en").click(async function () {
         let num = 1;
         mint(num);
 
     });
 
-    jQuery("#mint_5").click(async function () {
+    jQuery("#mint_5_en").click(async function () {
         let num = 5;
         mint(num);
 
     });
 
-    jQuery("#mint_10").click(async function () {
+    jQuery("#mint_10_en").click(async function () {
         let num = 10;
         mint(num);
 
@@ -229,7 +220,5 @@
 
     }
 
-
-</script>
 </body>
 </html>

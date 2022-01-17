@@ -1,15 +1,16 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0, minimal-ui">
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
 
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
 </head>
 <body>
     <div class="wrapperOne">
@@ -19,7 +20,7 @@
                 <div>YAYAUDAO</div>
             </div>
             <div class="right">
-                <a class="qiehuan" href="index.html">切换语言</a>
+                <a class="qiehuan" href="index.html">Switch Lang</a>
                 <a href="">
                     <img src="picture/weibo.svg" alt="">
                 </a>
@@ -35,21 +36,22 @@
 
     </div>
     <div>
+
         <div class="money">
             <div class="moneybtn">
-                <button id="mint_10_en">Mint 10</button>
-                <button id="mint_1_en">Mint 1</button>
+                <button id="mint_10">Mint 10</button>
+                <button id="mint_1">Mint 1</button>
 
 
-                <button id="eth_requestAccounts_en">链接钱包</button>
+                <button id="eth_requestAccounts">Connect wallet</button>
 
-                <button id="mint_5_en">Mint 5</button>
-                <span id="say_en"> </span>
+                <button id="mint_5">Mint 5</button>
+                <span id="say"> </span>
             </div>
             <div class="price">
                 <div class="priceitem">
                     <h2>
-                        价格
+                        Price
                     </h2>
                     <p>
                         0.05ETH
@@ -57,7 +59,7 @@
                 </div>
                 <div class="priceitem">
                     <h2>
-                        数量
+                        Amount
                     </h2>
                     <p>
                         0/2015
@@ -67,7 +69,6 @@
 
 
         </div>
-
 
     </div>
     <div class="wrapperthree">
@@ -133,21 +134,24 @@
             </div>
         </Div>
     </div>
-     
+    
+   
 <script>
 
-    function showResult1(node, msg) {
+    let signer;
+
+    function showResult(node, msg) {
         node.text(msg);
     }
 
-    jQuery("#eth_requestAccounts_en").click(async function () {
-
+    jQuery("#eth_requestAccounts").click(async function () {
+        await window.ethereum.enable()
         if (typeof window.ethereum == 'undefined') {
             alert('MetaMask is not installed!');
         } else {
             if (window.ethereum.chainId != "0x4") {
-                showResult(jQuery("#eth_requestAccounts_en"), "链接钱包");
-                showResult(jQuery("#say_en") ,"Wrong network, please switch to Ethereum network")
+                showResult(jQuery("#eth_requestAccounts"), "链接钱包");
+                showResult(jQuery("#say") ,"Wrong network, please switch to Ethereum network")
                 return;
             }
         }
@@ -157,28 +161,26 @@
         // The MetaMask plugin also allows signing transactions to
         // send ether and pay to change state within the blockchain.
         // For this, you need the account signer...
-        let signer = provider.getSigner();
+        signer = provider.getSigner();
         myAddress = await signer.getAddress();
-        showResult(jQuery("#eth_requestAccounts_en"), myAddress);
-        showResult(jQuery("#say_en"), "");
+        showResult(jQuery("#eth_requestAccounts"), myAddress);
+        showResult(jQuery("#say"), "");
 
     });
 
-   
-
-    jQuery("#mint_1_en").click(async function () {
+    jQuery("#mint_1").click(async function () {
         let num = 1;
         mint(num);
 
     });
 
-    jQuery("#mint_5_en").click(async function () {
+    jQuery("#mint_5").click(async function () {
         let num = 5;
         mint(num);
 
     });
 
-    jQuery("#mint_10_en").click(async function () {
+    jQuery("#mint_10").click(async function () {
         let num = 10;
         mint(num);
 
@@ -220,5 +222,7 @@
 
     }
 
+
+</script>
 </body>
 </html>
